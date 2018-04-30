@@ -55,6 +55,13 @@
                <a href="#general" aria-controls="general" role="tab" data-toggle="tab">
                   <span class="glyphicon glyphicon-dashboard"></span> &nbsp; Datos generales
                </a>
+                <div align="center">
+                  
+
+                  <img src="plugins/registros/infantiles/{$fsc->agente->codagente}" width="200" height="240">
+
+                
+                </div>
             </li>
             {loop="$fsc->extensions"}
                {if="$value->type=='button'"}
@@ -76,7 +83,7 @@
       <div class="col-sm-9 col-lg-10">
          <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="general">
-               <form class="form" role="form" action="{$fsc->url()}" method="post">
+               <form class="form" role="form" action="{$fsc->url()}" method="post" enctype="multipart/form-data">
                   <div class='panel {if="$fsc->agente->f_baja"}panel-danger{else}panel-primary{/if}' id='panel_generales'>
                      <div class="panel-heading">
                         <h3 class="panel-title">
@@ -133,25 +140,25 @@
                               <input id="ubicacion" class="form-control" type="text" name="ubicacion" value="{$fsc->agente->ubicacion}" autocomplete="off"/>
                            </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                            <div class="form-group">
                               Situación:
                               <input class="form-control" type="text" name="situacion" value="{$fsc->agente->situacion}"/>
                            </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                            <div class="form-group">
                               Tel. Celular:
                               <input class="form-control" type="text" name="movil" value="{$fsc->agente->movil}" maxlength="10" autocomplete="off"/>
                            </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                            <div class="form-group">
                               TAG:
                               <input class="form-control" type="text" name="tag" value="{$fsc->agente->tag}" maxlength="10" autocomplete="off"/>
                            </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 bg-primary">
                            <div class="form-group">
                               Fecha Alta:
                               <div class="input-group">
@@ -171,9 +178,20 @@
                                  </span>
                                  <input class="form-control datepicker" type="text" name="f_baja" value="{$fsc->agente->f_baja}" autocomplete="off"/>
                               </div>
-                           </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4 bg-primary">
+                            <div class="form-group">
+                              Agregar Imagen
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-file"></span>
+                                </span>
+                                <input class="form-control" type="file" name="nombre_image" id="nombre_image"  />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                     </div>
                      <div class="panel-footer" style="text-align: right;">
                         <button class="btn btn-sm btn-primary" type="submit" onclick="this.disabled = true; this.form.submit();">
                            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp; Guardar
