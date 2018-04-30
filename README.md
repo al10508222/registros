@@ -1,5 +1,5 @@
 ## Billar
-Software para la administración de un billar comun
+Software para pruebas de registros de usuarios y administracion de empleados con imagenes
 
 # FacturaScripts
 *Software de facturación y contabilidad para pymes, fácil, libre y con actualizaciones constantes. Es compatible con FacturaLux, Abanq y Eneboo. Es software libre bajo licencia GNU/LGPL.*
