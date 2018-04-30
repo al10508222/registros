@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : registrov.xml
+    Description:
+        Estructura de la tabla registrov.
+-->
+<tabla>
+<columna><nombre>id</nombre><tipo>serial</tipo><nulo>NO</nulo><defecto>nextval('registrov_id_seq'::regclass)</defecto></columna><columna><nombre>marca</nombre><tipo>varchar(50)</tipo><nulo>NO</nulo></columna><columna><nombre>modelo</nombre><tipo>varchar(10)</tipo><nulo>NO</nulo></columna><columna><nombre>anio</nombre><tipo>integer</tipo><nulo>NO</nulo></columna><columna><nombre>color</nombre><tipo>varchar(50)</tipo><nulo>NO</nulo></columna><columna><nombre>placas</nombre><tipo>varchar(10)</tipo><nulo>NO</nulo></columna><columna><nombre>foto</nombre><tipo>mediumblob</tipo><nulo>NO</nulo></columna><columna><nombre>id_vehiculo</nombre><tipo>varchar(20)</tipo><nulo>NO</nulo></columna><restriccion><nombre>registrov_pkey</nombre><consulta>PRIMARY KEY (id)</consulta></restriccion></tabla>

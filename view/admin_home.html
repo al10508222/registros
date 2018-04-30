@@ -1,0 +1,209 @@
+{include="header"}
+
+<script type="text/javascript">
+    function fs_marcar_todo() {
+        $('#f_enable_pages input:checkbox').prop('checked', true);
+    }
+    function eliminar(name) {
+        bootbox.confirm({
+            message: '¿Realmente desea eliminar este plugin?',
+            title: '<b>Atención</b>',
+            callback: function (result) {
+                if (result) {
+                    window.location.href = '{$fsc->url()}&delete_plugin=' + name + '#plugins';
+                }
+            }
+        });
+    }
+    function descargar_plugin_inestable(id) {
+        bootbox.confirm({
+            message: 'Este plugin está marcado como inestable. Significa que <b>no se recomienda su uso</b>,\n\
+ que todavía está en desarrollo y puede contener errores. ¿Estas seguro de que quieres descargarlo?',
+            title: '<b>Atención</b>',
+            callback: function (result) {
+                if (result) {
+                    window.location.href = '{$fsc->url()}&caca={$fsc->random_string(4)}&download2=' + id + '#plugins';
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        {if="$fsc->step=='1'"}
+        $('#tab_panel_control a[href="#t_descargas"]').tab('show');
+        {/if}
+
+        if (window.location.hash.substring(1) == 'paginas') {
+            $('#tab_panel_control a[href="#t_paginas"]').tab('show');
+        } else if (window.location.hash.substring(1) == 'plugins') {
+            $('#tab_panel_control a[href="#t_plugins"]').tab('show');
+        }
+
+        $('#marcar_todo_enabled').click(function () {
+            var checked = $(this).prop('checked');
+            $("#f_enable_pages input[name='enabled[]']").prop('checked', checked);
+        });
+    });
+</script>
+
+
+<div class="container-fluid" style="margin-top: 10px;">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="btn-group">
+                <a class="btn btn-sm btn-default" href="{$fsc->url()}" title="Recargar la página">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </a>
+            </div>
+            {if="!$fsc->disable_mod_plugins"}
+            <div class="btn-group">
+                <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_add_plugin">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="hidden-xs">&nbsp;Añadir</span>
+                </a>
+            </div>
+            {/if}
+            <div class="btn-group">
+                {loop="$fsc->extensions"}
+                {if="$value->type=='button'"}
+                <a href="index.php?page={$value->from}{$value->params}" class="btn btn-sm btn-default">{$value->text}</a>
+                {/if}
+                {/loop}
+            </div>
+        </div>
+        <div class="col-xs-6 text-right">
+            <h2 style="margin-top: 0px;">Panel de control</h2>
+        </div>
+    </div>
+</div>
+
+
+<div id="tab_panel_control" role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a href="#t_plugins" aria-controls="t_plugins" role="tab" data-toggle="tab">
+                <i class="fa fa-plug"></i>
+                <span class="hidden-xs">&nbsp;Plugins</span>
+            </a>
+        </li>
+    </ul>
+    
+    <div role="tabpanel" class="tab-pane active" id="t_plugins">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Plugin</th>
+                            <th class="text-left">Descripción</th>
+                            <th class="text-right">Versión</th>
+                            <th class="text-right">
+                                <span class="glyphicon glyphicon-flash" aria-hidden="true" title="Prioridad"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    {loop="$fsc->plugin_advanced_list()"}
+                    <!--{$tr_class=''}-->
+                    {if="!$value['compatible']"}<!--{$tr_class=' class="danger"'}-->{elseif="$value['enabled']"}<!--{$tr_class=' class="success"'}-->{/if}
+                    <tr{$tr_class}>
+                        <td>{$value['name']}</td>
+                        <td>
+                            <p>{$value['description']}</p>
+                            {if="$value['wizard']!='' && $value['enabled']"}
+                            <a href="index.php?page={$value['wizard']}" class="btn btn-xs btn-default">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Configurar
+                            </a>
+                            {/if}
+                            <a href="https://www.facturascripts.com/plugin/{$value['name']}" target="_blank" class="btn btn-xs btn-default">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp; más información
+                            </a>
+                            {if="$value['enabled']"}
+                            <a class="btn btn-xs btn-warning" href="{$fsc->url()}&disable={$value['name']}#plugins">
+                                <span class="glyphicon glyphicon-remove"></span> Desactivar
+                            </a>
+                            {else}
+                            <div class="btn-group">
+                                {if="!$fsc->disable_rm_plugins"}
+                                <a class="btn btn-xs btn-danger" onclick="eliminar('{$value['name']}')" title="eliminar plugin">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                                {/if}
+                                {if="$value['compatible']"}
+                                <a class="btn btn-xs btn-primary" href="{$fsc->url()}&caca={$fsc->random_string(4)}&enable={$value['name']}#plugins">
+                                    <span class="glyphicon glyphicon-ok"></span>&nbsp; Activar
+                                </a>
+                                {else}
+                                <a class="btn btn-xs btn-default" href="#" onclick="bootbox.alert({message: 'Le falta el archivo facturascripts.ini', title: '<b>Atención</b>'});">
+                                    <span class="glyphicon glyphicon-remove"></span>&nbsp; Incompatible
+                                </a>
+                                {/if}
+                            </div>
+                            {/if}
+                        </td>
+                        <td class="text-right">
+                            <a href="{#FS_COMMUNITY_URL#}/index.php?page=community_changelog&plugin={$value['name']}&version={$value['version']}" target="_blank">
+                                {$value['version']}
+                            </a>
+                        </td>
+                        <td class="text-right">{$value['prioridad']}</td>
+                    </tr>
+                    {else}
+                    <tr class="warning">
+                        <td colspan="5">
+                            No tienes plugins instalados.
+                            {if="!$fsc->disable_mod_plugins"}
+                            Mira en la pestaña <b>Descargas</b>.
+                            {/if}
+                        </td>
+                    </tr>
+                    {/loop}
+                </table>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {if="!$fsc->disable_add_plugins"}
+                        <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_add_plugin">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <span class="hidden-xs">&nbsp;Añadir</span>
+                        </a>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_add_plugin" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plug"></i>&nbsp; Añadir un plugin
+                </h4>
+                <p class="help-block">
+                    Si tienes un plugin en un archivo .zip, puedes subirlo e instalarlo desde aquí.
+                </p>
+            </div>
+            <div class="modal-body">
+                <form class="form" action="{$fsc->url()}#plugins" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="install" value="TRUE"/>
+                    <div class="form-group">
+                        <input type="file" name="fplugin" accept="application/zip"/>
+                    </div>
+                    <p class="help-block">
+                        Este servidor admite un tamaño máximo de {$fsc->get_max_file_upload()} MB.
+                        Si el plugin ocupa más, dará error al subirlo, incluso puede que no salga
+                        nada.
+                    </p>
+                    <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">
+                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span>&nbsp; Añadir
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include="footer"}

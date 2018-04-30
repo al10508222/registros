@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : agentes.xml
+    Description:
+        Estructura de la tabla agentes.
+-->
+<tabla>
+<columna><nombre>apellidos</nombre><tipo>varchar(200)</tipo><nulo>YES</nulo></columna><columna><nombre>codagente</nombre><tipo>varchar(10)</tipo><nulo>NO</nulo></columna><columna><nombre>nombre</nombre><tipo>varchar(50)</tipo><nulo>NO</nulo></columna><columna><nombre>dnicif</nombre><tipo>varchar(15)</tipo><nulo>NO</nulo></columna><columna><nombre>email</nombre><tipo>varchar(100)</tipo><nulo>YES</nulo></columna><columna><nombre>telefono</nombre><tipo>varchar(15)</tipo><nulo>YES</nulo></columna><columna><nombre>f_alta</nombre><tipo>date</tipo><nulo>YES</nulo></columna><columna><nombre>f_baja</nombre><tipo>date</tipo><nulo>YES</nulo></columna><columna><nombre>dependencia</nombre><tipo>varchar(100)</tipo><nulo>YES</nulo></columna><columna><nombre>ubicacion</nombre><tipo>varchar(150)</tipo><nulo>YES</nulo></columna><columna><nombre>situacion</nombre><tipo>varchar(100)</tipo><nulo>YES</nulo></columna><columna><nombre>tel_movil</nombre><tipo>integer</tipo><nulo>YES</nulo></columna><columna><nombre>tag</nombre><tipo>integer</tipo><nulo>NO</nulo></columna><restriccion><nombre>agentes_pkey</nombre><consulta>PRIMARY KEY (codagente)</consulta></restriccion></tabla>

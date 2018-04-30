@@ -1,0 +1,59 @@
+{include="header"}
+
+<div align="center">
+<h1 align="ceneter">Modificar Registros</h1>
+  
+</div>
+<div id="tab_proveedores" role="tabpanel">
+
+   <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">
+
+        <div class="container">
+
+            <div class="table-responsive">
+                    
+
+           <table class="table table-hover">
+                    <thead>
+                        <tr>			
+                            <th class="text-left">Consecutivo</th> 
+                            <th class="text-left">Marca</th> 
+                            <th class="text-left">Modelo</th> 
+                            <th class="text-left">Año</th> 
+                            <th class="text-left">Color</th> 
+                            <th class="text-left">Placas</th> 
+                            <th class="text-left">Nombre Chofer</th> 
+                        </tr>
+                    </thead>
+                    {loop="$fsc->resultados"}
+                    <tr class="clickableRow" href="{$value->url()}">
+                        <td>{$value->id}</td>
+                        <td>{$value->marca}</td>
+                        <td>{$value->modelo}</td>
+                        <td>{$value->anio}</td>
+                        <td>{$value->color}</td>
+                        <td>{$value->placas}</td>
+                        <!-- <td>{$value->codagente}</td> -->
+
+                        <td class='clickableRow{if="$value->id"} {/if}' href='{$value->url()}' width="5px">
+                            <span class="glyphicon glyphicon-check " aria-hidden="true" style="color:#04B4AE; font-size: 12px;"></span> 
+                        </td>   
+                    {else}
+
+                    <td class="form-control">No hay resultados</td>
+
+                    {/loop}
+                    
+                    </tr>       
+                </table>
+
+            </div>
+        </div
+      </div>
+   </div>
+</div>
+
+
+
+{include="footer"}

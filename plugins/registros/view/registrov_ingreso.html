@@ -1,0 +1,80 @@
+{include="header"}
+    <div class="col-sm-3 col-xs-3">
+        <div class="btn-group">
+            <a class="btn btn-sm btn-default" href="index.php?page=registrov_mostrar">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                <span class="hidden-xs hidden-sm">&nbsp; REGISTROS</span>
+            </a>
+            <a class="btn btn-sm btn-default" href="{$fsc->url()}" title="Recargar la página">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <form action="{$fsc->url()}" method="post" class="form" enctype="multipart/form-data">         
+        <div align="center">
+            <h1>Ingresar Nuevo Registro Vehícular</h1>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="container" align="center">
+            <input type="hidden" name="id" class="form-control" value="{$fsc->registrov->get_new_codigo()}">
+            <div>  
+                Marca:
+                <div class="form-group">
+                    <input type="Text" name="marca" id="marca" class="form-control" required placeholder="Marca">
+                </div>
+                Año:
+                <div class="form-group">
+                    <input type="number" name="anio" id="anio" class="form-control" required placeholder="Año">
+                </div>
+                Placas: 
+                <div class="form-group">
+                    <input type="Text" name="placas" id="placas" class="form-control" required placeholder="Placas" maxlength="6">
+                </div>
+            </div>  
+            <div >  
+                Modelo:
+                <div class="form-group">
+                    <input type="Text" name="modelo" id="modelo" class="form-control" placeholder="Modelo">
+                </div>
+                Color Vehículo:
+                <div class="form-group">
+                    <input type="Text" name="color" id="color" class="form-control" placeholder="Color">
+                </div>
+                ID Vehículo:
+                <div class="form-group">
+                    <input type="Text" name="id_vehiculo" id="id_vehiculo" class="form-control" placeholder="ID Vehículo">
+                </div>
+               <div class="form-group">
+                  Empleado: 
+                  <select name="ncodagente" class="form-control">
+                     <option value="">Ninguno</option>
+                     <option value="">------</option>
+                     {loop="$fsc->agente->all()"}
+                     <option value="{$value->codagente}">{$value->get_fullname()}</option>
+                     {/loop}
+                  </select>
+               </div>
+                <br>
+            </div>
+            <div>  
+                <div class="text-right">
+                    <button type="submit" class="btn btn-sm btn-primary">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                            &nbsp; Guardar
+                    </button>
+                </div>    
+            </div>                 
+        </div>
+    </form>
+
+{include="footer"}

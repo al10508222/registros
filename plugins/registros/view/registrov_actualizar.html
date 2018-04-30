@@ -1,0 +1,141 @@
+{include="header"}
+
+
+{if="$fsc->registrov"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#b_delete_registrov").click(function (event) {
+            event.preventDefault();
+            if (confirm("¿Realmente desea eliminar?"))
+            {
+                window.location.href = '{$fsc->ppage->url()}&delete={$fsc->registrov->id}';
+            }
+        });
+    });
+</script>
+<div class="container">
+
+<div class="col-sm-3 col-xs-3">
+            <div class="btn-group">
+                <a class="btn btn-sm btn-default" href="index.php?page=registrov_mostrar">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span class="hidden-xs hidden-sm">&nbsp; REGISTROS</span>
+                </a>
+                <a class="btn btn-sm btn-default" href="{$fsc->url()}" title="Recargar la página">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </a>
+            </div>
+        </div>
+    <br>
+    <br>
+    <br>
+
+        
+        <div align="center">
+            <h1>Editar Información del Vehículo</h1>
+        </div>
+    <br>
+    <br>
+    <br>
+
+    <form class="form" action="{$fsc->url()}" method="post" enctype="multipart/form-data">         
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                     <table>
+                         <thead>
+                             <tr>
+                                 <th>Foto del Vehículo</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td class="text-center">{$fsc->image_user()}</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                       
+                    </div>
+                 </div>
+
+                 <div class="form-group">
+               Cambiar foto del vehículo: 
+               <br>
+               <br>
+                  <input type="file" name="imagen" id="imagen" title="Seleccione la imagen en formato JPEG">
+               </div> 
+                <br>    
+                <br>      
+                <br>      
+                <br>      
+                <br>      
+                <br>      
+                <br>      
+
+                <div class="col-md-2"> 
+                    <div class="form-group">
+                        Consecutivo: 
+                        <input type="" name="id" class="form-control" value="{$fsc->registrov->id}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-2"> 
+                    <div class="form-group">
+                        ID Vehículo: 
+                        <input type="" name="id_vehiculo" class="form-control" value="{$fsc->registrov->id_vehiculo}">
+                    </div>
+                </div>
+                <div class="col-md-4">  
+                    <div class="form-group">
+                        Marca: 
+                        <input type="Text" name="marca" class="form-control" value="{$fsc->registrov->marca}">
+                    </div>
+                </div>  
+                <div class="col-md-4">  
+                    <div class="form-group">
+                        Modelo:  
+                        <input type="Text" name="modelo" class="form-control" value="{$fsc->registrov->modelo}">
+                    </div>
+                </div>
+                <div class="col-md-4">  
+                    <div class="form-group">
+                        Año: 
+                        <input type="Text" name="anio" id="anio" class="form-control" value="{$fsc->registrov->anio}">
+                    </div>
+                </div>
+                <div class="col-md-4">  
+                    <div class="form-group">
+                        Color: 
+                        <input type="Text" name="color" class="form-control" value="{$fsc->registrov->color}">
+                    </div>
+                </div>
+                <div class="col-md-4">  
+                    <div class="form-group">
+                        Placas:  
+                        <input type="Text" name="placas" class="form-control" value="{$fsc->registrov->placas}">
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-sm btn-primary" name="subir" id="subir">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                        &nbsp; Guardar
+                </button>
+                    
+					
+					{if="$fsc->allow_delete"}
+					<a href="#" id="b_delete_registrov" class="btn btn-sm btn-danger right" >
+						<span class="glyphicon glyphicon-trash"></span>
+						<span class="hidden-xs hidden-sm">&nbsp; Eliminar</span>
+					</a>
+					{/if}
+                    </div>  					
+                </div>  
+            </div>
+        </div>
+    </form>
+</div>
+{/if}
+{include="footer"}

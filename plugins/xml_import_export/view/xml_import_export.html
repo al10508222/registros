@@ -1,0 +1,159 @@
+{include="header"}
+
+<script type="text/javascript">
+   function comprobar_url()
+   {
+      if(window.location.hash.substring(1) == 'export')
+      {
+         $("#b_importar").removeClass('active');
+         $("#g_importar").hide();
+         $("#b_exportar").addClass('active');
+         $("#g_exportar").show();
+      }
+      else if(window.location.hash.substring(1) == 'import')
+      {
+         $("#b_exportar").removeClass('active');
+         $("#g_exportar").hide();
+         $("#b_importar").addClass('active');
+         $("#g_importar").show();
+      }
+   }
+   $(document).ready(function() {
+      comprobar_url();
+      window.onpopstate = function(){ 
+         comprobar_url();
+      }
+   });
+</script>
+
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="page-header">
+            <h1>
+               <span class="glyphicon glyphicon-transfer"></span>
+               Importar/exportar XML
+               <a class="btn btn-xs btn-default" href="{$fsc->url()}" title="Recargar la página">
+                  <span class="glyphicon glyphicon-refresh"></span>
+               </a>
+               <span class="btn-group">
+               {loop="$fsc->extensions"}
+                  {if="$value->type=='button'"}
+                  <a href="index.php?page={$value->from}{$value->params}" class="btn btn-xs btn-default">{$value->text}</a>
+                  {/if}
+               {/loop}
+               </span>
+            </h1>
+            <p class='help-block'>
+               Desde aquí puedes exportar en XML los datos de una tabla de la base de datos,
+               a través de una consulta SQL. Además de poder hacer el proceso inverso,
+               a partir de un XML, importar los datos a la base de datos.
+               <br/>
+               <b>Nota:</b> los valores de las etiquetas del XML están codificados en base64 para evitar problemas.
+            </p>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-2">
+         <div class="list-group">
+            <a id="b_exportar" href="#export" class="list-group-item active">
+               <span class="glyphicon glyphicon-export"></span> &nbsp; Exportar
+            </a>
+            <a id="b_importar" href="#import" class="list-group-item">
+               <span class="glyphicon glyphicon-import"></span> &nbsp; Importar
+            </a>
+         </div>
+         <div class="alert alert-warning hidden-xs">
+            <p class="help-block">
+               Este plugin está orientado a programadores y Partners.
+               <br/><br/>
+               No lo uses si no sabes lo que haces. Quedas avisado.
+            </p>
+         </div>
+      </div>
+      <div class="col-sm-10">
+         <div id="g_exportar">
+            <form action="{$fsc->url()}" method="post" target="_blank" class="form">
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">Datos de la tabla...</h3>
+                  </div>
+                  <div class="panel-body">
+                     <div class="form-group">
+                        SELECT * FROM
+                        <select name="tabla" class="form-control">
+                        {loop="$fsc->tablas()"}<option value="{$value['name']}">{$value['name']}</option>{/loop}
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        WHERE
+                        <input class="form-control" type="text" name="where" value="1 = 1" autocomplete="off"/>
+                     </div>
+                  </div>
+                  <div class="panel-footer">
+                     <button class="btn btn-sm btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-export"></span> &nbsp; Exportar
+                     </button>
+                  </div>
+               </div>
+            </form>
+            
+            <div class="panel panel-success">
+               <div class="panel-heading">
+                  <h3 class="panel-title">Estructura de la tabla...</h3>
+               </div>
+               <div class="panel-body">
+                  <div class="container-fluid">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <p class="help-block">
+                              Haz clic en el nombre de una tabla para obtener el archivo
+                              XML que define su estructura. Este archivo es necesario
+                              para implementar un modelo sobre esa tabla.
+                              <b>Nota</b>: es mejor que utilices el nuevo plugin
+                              <a href="https://www.facturascripts.com/plugin/FSDK" target="_blank">FSDK</a>
+                              para esta tarea.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        {loop="$fsc->all_tables()"}
+                        <div class="col-sm-4">
+                           <a target="_blank" href='{$fsc->page->url()}&table={$value.name}'>{$value.name}</a>
+                        </div>
+                        {/loop}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         <div id="g_importar" style="display: none;">
+            <form action="{$fsc->url()}#import" method="post" enctype='multipart/form-data' class="form">
+               <input name='archivo' type='hidden' value='TRUE'/>
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">Datos de la tabla...</h3>
+                  </div>
+                  <div class="panel-body">
+                     <div class="form-group">
+                        <input name='farchivo' type='file' accept='text/xml'/>
+                        <p class='help-block'>
+                           Recuerda que los valores de las etiquetas del XML están codificados en base64 para evitar problemas.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="panel-footer">
+                     <button class="btn btn-sm btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">
+                        <span class="glyphicon glyphicon-import"></span> &nbsp; Importar
+                     </button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+{include="footer"}
