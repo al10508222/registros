@@ -1,4 +1,4 @@
-## Billar
+## Registros de usuarios (pruebas escolares)
 Software para pruebas de registros de usuarios y administracion de empleados con imagenes
 
 # FacturaScripts
