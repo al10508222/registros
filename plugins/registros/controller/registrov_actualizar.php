@@ -41,7 +41,7 @@ class registrov_actualizar extends fs_controller{
                $this->registrov->color = $_POST['color'];
                $this->registrov->placas = $_POST['placas'];
                $this->registrov->id_vehiculo = $_POST['id_vehiculo'];
-
+               $this->registrov->codagente = $_POST['ncodagente'];
                                                           
                if( $this->registrov->save() )
                {
