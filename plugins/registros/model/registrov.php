@@ -10,15 +10,18 @@ class registrov extends fs_model {
     public $placas; 
     public $foto;
     public $id_vehiculo;
-    public $codagente;  
-
+    public $codagente; 
+    public $nombre; 
+    public $apellidos; 
+    public $dnicif; //matricula
+    
 
     
 
     public function __construct($r = FALSE) {
-        parent::__construct('registrov'); 
+        parent::__construct(''); 
         if ($r) {
-            $this->id = $r['id'];
+            // $this->id = $r['id'];
             $this->marca = $r['marca'];
             $this->modelo = $r['modelo']; 
             $this->anio = $r['anio'];
@@ -26,12 +29,13 @@ class registrov extends fs_model {
             $this->placas = $r['placas'];
             $this->foto = $r['foto'];   
             $this->id_vehiculo = $r['id_vehiculo'];   
-            $this->codagente = $r['codagente'];   
-
-
+            $this->codagente = $r['codagente'];  
+            $this->nombre = $r['nombre']; 
+            $this->apellidos = $r['apellidos'];  
+            $this->dnicif = $r['dnicif']; 
 
         } else {
-            $this->id = NULL; 
+            // $this->id = NULL; 
             $this->marca = NULL; 
             $this->modelo = NULL; 
             $this->anio = NULL; 
@@ -40,6 +44,9 @@ class registrov extends fs_model {
             $this->foto = NULL; 
             $this->id_vehiculo = NULL;  
             $this->codagente = NULL; 
+            $this->nombre = NULL; 
+            $this->apellidos = NULL; 
+            $this->dnicif = NULL; 
 
         }
     }
@@ -57,8 +64,6 @@ class registrov extends fs_model {
 
     protected function install() {
         $this->clean_cache();
-        /*return "INSERT INTO " . $this->table_name . " (id,descripcion,obs)
-         VALUES ('1','Super 1','El mejor');";*/
     }
 
     public function get_new_codigo() {
@@ -84,6 +89,33 @@ class registrov extends fs_model {
         } else
             return FALSE;
     }
+    
+    public function get2($id) {
+        $r = $this->db->select("SELECT 
+                        rv.marca,
+                        rv.modelo,
+                        rv.anio,
+                        rv.color,
+                        rv.placas,
+                        rv.id_vehiculo,
+                        rv.codagente,
+                        rv.foto,
+                        a.nombre,
+                        a.apellidos,
+                        a.dnicif,
+                        a.dependencia,
+                        a.ubicacion,
+                        a.telefono,
+                        a.tel_movil
+                    FROM registrov rv 
+                    LEFT JOIN agentes a USING(codagente)
+                    WHERE a.codagente = " . $this->var2str($id) . ";");
+        if ($r) {
+            return new registrov($r[0]);
+        } else
+            return FALSE;
+    }
+
 
     public function exists() {
         if (is_null($this->id)) {
@@ -142,8 +174,7 @@ class registrov extends fs_model {
                         ");";
 
             }
-
-            return $this->db->exec($sql);
+        return $this->db->exec($sql);
     }
 
     public function delete() {
@@ -169,5 +200,6 @@ class registrov extends fs_model {
         return $listaregistrov;
 
     }
+    
 
 }

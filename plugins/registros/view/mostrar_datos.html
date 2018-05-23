@@ -1,0 +1,122 @@
+{include="header2"}
+{if="$fsc->registrov"}
+<div class="container">
+<div class="col-sm-3 col-xs-3">
+        
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <br>
+
+    <form class="form" action="{$fsc->url()}" method="post" enctype="multipart/form-data">         
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                     <table>
+                         <thead>
+                             <tr>
+                                 <th>Foto del Vehículo</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td class="text-center">{$fsc->image_user()}</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                       
+                    </div>
+                 </div>
+
+                <br>    
+                <br>      
+                <br>      
+                <br>      
+                <br>      
+                <br>      
+                <br>      
+                
+                <div class="col-md-6"> 
+                    <table class="table table-striped" border="1">
+                        <tr>
+                            <th>Nombre: </th>
+                            <td>{$fsc->registrov->nombre} {$fsc->registrov->apellidos}</td>
+                        </tr>
+                        <tr>
+                            <th>Matricula: </th>
+                            <td>{$fsc->registrov->dnicif}</td>
+                        </tr>
+                        <tr>
+                            <th>ID Vehículo: </th>
+                            <td>{$fsc->registrov->id_vehiculo}</td>
+                        </tr>
+                        <tr>
+                            <th>Marca: </th>
+                            <td>{$fsc->registrov->marca}</td>
+                        </tr>
+                        <tr>
+                            <th>Modelo: </th>
+                            <td>{$fsc->registrov->modelo}</td>
+                        </tr>
+                        <tr>
+                            <th>Año: </th>
+                            <td>{$fsc->registrov->anio}</td>
+                        </tr>
+                        <tr>
+                            <th>Color: </th>
+                            <td>{$fsc->registrov->color}</td>
+                        </tr>
+                        <tr>
+                            <th>Placas: </th>
+                            <td>{$fsc->registrov->placas}</td>
+                        </tr>
+                    </table>
+                </div> 
+                <div class="col-md-6"> 
+                    <table class="table table-striped" border="1">
+                        <tr>
+                            <th>Nombre: </th>
+                            <td>{$fsc->registrov->nombre} {$fsc->registrov->apellidos}</td>
+                        </tr>
+                        <tr>
+                            <th>Matricula: </th>
+                            <td>{$fsc->registrov->dnicif}</td>
+                        </tr>
+                        <tr>
+                            <th>ID Vehículo: </th>
+                            <td>{$fsc->registrov->id_vehiculo}</td>
+                        </tr>
+                        <tr>
+                            <th>Marca: </th>
+                            <td>{$fsc->registrov->marca}</td>
+                        </tr>
+                        <tr>
+                            <th>Modelo: </th>
+                            <td>{$fsc->registrov->modelo}</td>
+                        </tr>
+                        <tr>
+                            <th>Año: </th>
+                            <td>{$fsc->registrov->anio}</td>
+                        </tr>
+                        <tr>
+                            <th>Color: </th>
+                            <td>{$fsc->registrov->color}</td>
+                        </tr>
+                        <tr>
+                            <th>Placas: </th>
+                            <td>{$fsc->registrov->placas}</td>
+                        </tr>
+                    </table>
+                </div> 
+            </div>
+        </div>
+    </form>
+</div>
+{/if}
+{include="footer"}
