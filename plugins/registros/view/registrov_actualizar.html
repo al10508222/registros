@@ -118,6 +118,28 @@
                     </div>
                 </div>
 
+                
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       <a href="{$fsc->agente->url()}">Chofer/Empleado</a>:
+                       <select name="ncodagente" class="form-control">
+                       {if="$fsc->user->admin"}
+                          <option value="">Ninguno</option>
+                          <option value="">------</option>
+                          {loop="$fsc->agente->all()"}
+                             <option value="{$value->codagente}" selected="">{$value->get_fullname()}</option>
+                          {/loop}
+                       {else}
+                          {loop="$fsc->agente->all()"}
+                             {if="$fsc->suser->codagente==$value->codagente"}
+                             <option value="{$value->codagente}" selected="">{$value->get_fullname()}</option>
+                             {/if}
+                          {/loop}
+                       {/if}
+                       </select>
+                    </div>
+                 </div>
+
                 <div class="text-right">
                     <button type="submit" class="btn btn-sm btn-primary" name="subir" id="subir">
                         <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>

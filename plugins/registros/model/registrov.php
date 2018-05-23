@@ -9,7 +9,8 @@ class registrov extends fs_model {
     public $color;
     public $placas; 
     public $foto;
-    public $id_vehiculo;  
+    public $id_vehiculo;
+    public $codagente;  
 
 
     
@@ -25,6 +26,7 @@ class registrov extends fs_model {
             $this->placas = $r['placas'];
             $this->foto = $r['foto'];   
             $this->id_vehiculo = $r['id_vehiculo'];   
+            $this->codagente = $r['codagente'];   
 
 
 
@@ -37,6 +39,7 @@ class registrov extends fs_model {
             $this->placas = NULL; 
             $this->foto = NULL; 
             $this->id_vehiculo = NULL;  
+            $this->codagente = NULL; 
 
         }
     }
@@ -122,16 +125,19 @@ class registrov extends fs_model {
                         ", color =         "      .$this->var2str($this->color) .
                         ", placas =         "      .$this->var2str($this->placas) .
                         ", id_vehiculo =         "      .$this->var2str($this->id_vehiculo) .
+                        ", codagente =         "      .$this->var2str($this->codagente) .
+                        
 
                         "  WHERE id = " .$this->var2str($this->id).";";
             } else {
-                $sql = "INSERT INTO " . $this->table_name . " (marca,modelo,anio,color,placas,id_vehiculo)
+                $sql = "INSERT INTO " . $this->table_name . " (marca,modelo,anio,color,placas,id_vehiculo,codagente)
                   VALUES (" . $this->var2str($this->marca) .
                         "," . $this->var2str($this->modelo).
                         "," . $this->var2str($this->anio).
                         "," . $this->var2str($this->color).
                         "," . $this->var2str($this->placas).
                         "," . $this->var2str($this->id_vehiculo).
+                        "," . $this->var2str($this->codagente).
 
                         ");";
 

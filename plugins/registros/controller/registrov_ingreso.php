@@ -28,7 +28,7 @@ class registrov_ingreso extends fs_controller {
           $bo->color   = $_POST['color'];
           $bo->placas   = $_POST['placas'];
           $bo->id_vehiculo   = $_POST['id_vehiculo'];
-          $bo->agente   = $_POST['codagente'];
+          $bo->codagente   = $_POST['ncodagente'];
 
 
           

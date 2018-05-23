@@ -19,6 +19,7 @@ class registrov_actualizar extends fs_controller{
       $this->registrov = new registrov(); 
       $this->registrov = FALSE;
       $this->divisa = new divisa(); 
+      $this->agente = new agente();
       if( isset($_GET['id']) )
       {
          $registrov = new registrov();
