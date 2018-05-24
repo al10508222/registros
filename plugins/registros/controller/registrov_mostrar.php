@@ -64,15 +64,11 @@ class registrov_mostrar extends fs_controller {
          else
             $this->new_error_msg("Registro no encontrado!");
       }
-
       
    }
 
-
    private function buscar()
    {
-
-
       $this->total_resultados = 0;
       $query = mb_strtolower( $this->registrov->no_html($this->query), 'UTF8' );
       $sql = " FROM registrov";
@@ -91,20 +87,14 @@ class registrov_mostrar extends fs_controller {
       $and = ' AND ';
       }
 
-
-
-
       $data = $this->db->select("SELECT COUNT(id) as total".$sql.';');
       if($data)
       {
          $this->num_resultados = intval($data[0]['total']);
          
-
-         
          $data2 = $this->db->select("SELECT *".$sql." ORDER BY anio asc".";");
     }
   }
-
 
 
   public function buscar2()

@@ -1,6 +1,6 @@
 <?php
 
-class registrov extends fs_model {
+class mostrar extends fs_model {
 
     public $id; 
     public $marca;
@@ -14,6 +14,10 @@ class registrov extends fs_model {
     public $nombre; 
     public $apellidos; 
     public $dnicif; //matricula
+    public $dependencia; 
+    public $lugar;
+    public $telefono; 
+    public $movil; 
     
 
     
@@ -21,7 +25,6 @@ class registrov extends fs_model {
     public function __construct($r = FALSE) {
         parent::__construct(''); 
         if ($r) {
-            $this->id = $r['id'];
             $this->marca = $r['marca'];
             $this->modelo = $r['modelo']; 
             $this->anio = $r['anio'];
@@ -30,9 +33,13 @@ class registrov extends fs_model {
             $this->foto = $r['foto'];   
             $this->id_vehiculo = $r['id_vehiculo'];   
             $this->codagente = $r['codagente'];  
-            /*$this->nombre = $r['nombre']; 
+            $this->nombre = $r['nombre']; 
             $this->apellidos = $r['apellidos'];  
-            $this->dnicif = $r['dnicif']; */
+            $this->dnicif = $r['dnicif']; 
+            $this->dependencia = $r['dependencia']; 
+            $this->lugar = $r['ubicacion'];
+            $this->telefono = $r['telefono']; 
+            $this->movil = $r['tel_movil']; 
 
         } else {
             // $this->id = NULL; 
@@ -47,6 +54,10 @@ class registrov extends fs_model {
             $this->nombre = NULL; 
             $this->apellidos = NULL; 
             $this->dnicif = NULL; 
+            $this->dependencia = NULL;
+            $this->lugar = NULL;
+            $this->telefono = NULL;
+            $this->movil = NULL; 
 
         }
     }
@@ -111,70 +122,17 @@ class registrov extends fs_model {
                     LEFT JOIN agentes a USING(codagente)
                     WHERE rv.id = " . $this->var2str($id) . ";");
         if ($r) {
-            return new registrov($r[0]);
+            return new mostrar($r[0]);
         } else
             return FALSE;
     }
 
 
     public function exists() {
-        if (is_null($this->id)) {
-            return FALSE;
-        } else
-            return $this->db->select("SELECT * FROM " . $this->table_name . " WHERE id = " . $this->var2str($this->id) . ";");
     }
 
     public function save() {
-            $this->clean_cache();
-            if ($this->exists()) {
-               $maximo = 1024000; //100Kb
-               $tipos = array("image/gif","image/jpeg","image/jpg","image/pjpeg");
-                if (is_uploaded_file($_FILES['imagen']['tmp_name'])) 
-                   {
-                      if (in_array($_FILES['imagen']['type'],$tipos) && $_FILES['imagen']['size'] <= $maximo)
-                      { // Es correcto?
-                         $fp = fopen($_FILES['imagen']['tmp_name'], 'r'); //Abrimos la imagen
-                            $imagen = fread($fp, filesize($_FILES['imagen']['tmp_name'])); //Extraemos el contenido de la imagen
-                            
-                            $imagen = addslashes($imagen);
-                            
-                            fclose($fp); //Cerramos imagen
-                            
-                            $marca = $_POST['marca']; 
 
-                            $query = "UPDATE registrov SET foto = '".$imagen."' WHERE id = '".$_POST['id']."'";
-
-                            $this->db->exec($query); 
-                            
-                        }
-                    }
-
-
-                $sql = "UPDATE " . $this->table_name . " SET marca = " . $this->var2str($this->marca) .
-                        
-                        ", modelo =         "      .$this->var2str($this->modelo) .
-                        ", anio =         "      .$this->var2str($this->anio) .
-                        ", color =         "      .$this->var2str($this->color) .
-                        ", placas =         "      .$this->var2str($this->placas) .
-                        ", id_vehiculo =         "      .$this->var2str($this->id_vehiculo) .
-                        ", codagente =         "      .$this->var2str($this->codagente) .
-                        
-
-                        "  WHERE id = " .$this->var2str($this->id).";";
-            } else {
-                $sql = "INSERT INTO " . $this->table_name . " (marca,modelo,anio,color,placas,id_vehiculo,codagente)
-                  VALUES (" . $this->var2str($this->marca) .
-                        "," . $this->var2str($this->modelo).
-                        "," . $this->var2str($this->anio).
-                        "," . $this->var2str($this->color).
-                        "," . $this->var2str($this->placas).
-                        "," . $this->var2str($this->id_vehiculo).
-                        "," . $this->var2str($this->codagente).
-
-                        ");";
-
-            }
-        return $this->db->exec($sql);
     }
 
     public function delete() {
@@ -187,18 +145,7 @@ class registrov extends fs_model {
     }
 
     public function all() {
-        $listaregistrov = $this->cache->get_array('m_registrov_all');
-        if (!$listaregistrov) {
-            $registrov = $this->db->select("SELECT * FROM " . $this->table_name . " ORDER BY id DESC;");
-            if ($registrov) {
-                foreach ($registrov as $r)
-                    $listaregistrov[] = new registrov($r);
-            }
-           $this->cache->set('m_registrov_all', $listaregistrov);
-        }
-
-        return $listaregistrov;
-
+    
     }
     
 

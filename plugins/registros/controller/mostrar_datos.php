@@ -1,5 +1,5 @@
 <?php
-require_model('registrov.php');
+require_model('mostrar.php');
 require_model('divisa.php'); 
 
 class mostrar_datos extends fs_controller{
@@ -15,13 +15,13 @@ class mostrar_datos extends fs_controller{
    protected function private_core()
    {
       
-      $this->registrov = new registrov(); 
+      $this->registrov = new mostrar(); 
       $this->registrov = FALSE;
       $this->divisa = new divisa(); 
       $this->agente = new agente();
       if( isset($_GET['id']) )
       {
-        $registrov = new registrov();
+        $registrov = new mostrar();
         $this->registrov = $registrov->get2($_GET['id']);
       }
       
