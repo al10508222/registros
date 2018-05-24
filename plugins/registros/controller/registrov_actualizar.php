@@ -45,10 +45,40 @@ class registrov_actualizar extends fs_controller{
                                                           
                if( $this->registrov->save() )
                {
-                  $this->new_message("Datos actualizados correctamente.");
-               }
-               else
-                  $this->new_error_msg("Imposible guardar!");
+                    for($i = 1; $i<=count($_FILES); $i++){
+                        if(is_uploaded_file($_FILES['nombre_image']['tmp_name'])){
+                            echo count($_FILES); 
+                            //Definir nombres
+                            $nombre=$_FILES['nombre_image']['name'];
+                            $nombre=strtolower($nombre);
+                            $tipo=$_FILES['nombre_image']['type'];
+                            $tipo=strtolower($tipo);
+                            $size=$_FILES['nombre_image']['size'];
+                            $error=$_FILES['nombre_image']['error'];
+                            $extension=substr($tipo,strpos($tipo,'/')+1);
+                            
+                            $lugar='plugins/registros/imagescars/';
+                            //Fin de definir nombres
+                            $ruta = "'".$lugar.$this->registrov->id_vehiculo."'"; 
+                        
+                        
+                            if(!empty($nombre) && isset($nombre)){
+                                if($error==0){
+                                    if(strpos($tipo,'gif') || strpos($tipo,'jpg') || strpos($tipo,'jpeg') || strpos($tipo,'bmp') || strpos($tipo,'png')){
+                                        if(move_uploaded_file($_FILES['nombre_image']['tmp_name'],$lugar.$this->registrov->id_vehiculo)){
+                                            $id_v = "'".$this->registrov->id_vehiculo.$i."'"; 
+                                            $sql = 'INSERT INTO image_vehiculo (imagen, id_vehiculo)VALUES('.$ruta.', '.$id_v.')'; 
+                                            $this->db->exec($sql); 
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                            $this->new_message("Datos actualizados correctamente.");
+                        }
+                    }
+                
+                    
             }
             else
                $this->new_error_msg('No tienes permiso para modificar estos datos.');
@@ -57,6 +87,7 @@ class registrov_actualizar extends fs_controller{
       else
          $this->new_error_msg("Registro No Encontrado.");
    }
+}
    
    private function user_can_edit()
    {

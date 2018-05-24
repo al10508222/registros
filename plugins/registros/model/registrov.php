@@ -124,28 +124,27 @@ class registrov extends fs_model {
     public function save() {
             $this->clean_cache();
             if ($this->exists()) {
-               $maximo = 1024000; //100Kb
-               $tipos = array("image/gif","image/jpeg","image/jpg","image/pjpeg");
-                if (is_uploaded_file($_FILES['imagen']['tmp_name'])) 
-                   {
-                      if (in_array($_FILES['imagen']['type'],$tipos) && $_FILES['imagen']['size'] <= $maximo)
-                      { // Es correcto?
-                         $fp = fopen($_FILES['imagen']['tmp_name'], 'r'); //Abrimos la imagen
-                            $imagen = fread($fp, filesize($_FILES['imagen']['tmp_name'])); //Extraemos el contenido de la imagen
+            //    $maximo = 1024000; //100Kb
+            //    $tipos = array("image/gif","image/jpeg","image/jpg","image/pjpeg");
+            //     if (is_uploaded_file($_FILES['imagen']['tmp_name'])) 
+            //        {
+            //           if (in_array($_FILES['imagen']['type'],$tipos) && $_FILES['imagen']['size'] <= $maximo)
+            //           { // Es correcto?
+            //              $fp = fopen($_FILES['imagen']['tmp_name'], 'r'); //Abrimos la imagen
+            //                 $imagen = fread($fp, filesize($_FILES['imagen']['tmp_name'])); //Extraemos el contenido de la imagen
                             
-                            $imagen = addslashes($imagen);
+            //                 $imagen = addslashes($imagen);
                             
-                            fclose($fp); //Cerramos imagen
+            //                 fclose($fp); //Cerramos imagen
                             
-                            $marca = $_POST['marca']; 
+            //                 $marca = $_POST['marca']; 
 
-                            $query = "UPDATE registrov SET foto = '".$imagen."' WHERE id = '".$_POST['id']."'";
+            //                 $query = "UPDATE registrov SET foto = '".$imagen."' WHERE id = '".$_POST['id']."'";
 
-                            $this->db->exec($query); 
+            //                 $this->db->exec($query); 
                             
-                        }
-                    }
-
+            //             }
+            //         }
 
                 $sql = "UPDATE " . $this->table_name . " SET marca = " . $this->var2str($this->marca) .
                         
