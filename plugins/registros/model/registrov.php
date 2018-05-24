@@ -19,7 +19,7 @@ class registrov extends fs_model {
     
 
     public function __construct($r = FALSE) {
-        parent::__construct(''); 
+        parent::__construct('registrov'); 
         if ($r) {
             $this->id = $r['id'];
             $this->marca = $r['marca'];
@@ -30,12 +30,9 @@ class registrov extends fs_model {
             $this->foto = $r['foto'];   
             $this->id_vehiculo = $r['id_vehiculo'];   
             $this->codagente = $r['codagente'];  
-            /*$this->nombre = $r['nombre']; 
-            $this->apellidos = $r['apellidos'];  
-            $this->dnicif = $r['dnicif']; */
 
         } else {
-            // $this->id = NULL; 
+            $this->id = NULL; 
             $this->marca = NULL; 
             $this->modelo = NULL; 
             $this->anio = NULL; 
@@ -158,8 +155,6 @@ class registrov extends fs_model {
                         ", placas =         "      .$this->var2str($this->placas) .
                         ", id_vehiculo =         "      .$this->var2str($this->id_vehiculo) .
                         ", codagente =         "      .$this->var2str($this->codagente) .
-                        
-
                         "  WHERE id = " .$this->var2str($this->id).";";
             } else {
                 $sql = "INSERT INTO " . $this->table_name . " (marca,modelo,anio,color,placas,id_vehiculo,codagente)
