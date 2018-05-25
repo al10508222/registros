@@ -50,10 +50,10 @@
                   <input type="file" name="nombre_image" id="nombre_image" title="Seleccione la imagen en formato JPEG" multiple>
                </div> 
 
-                <div class="col-sm-12">
+                <div class="col-sm-12" align="center">
                     <div class="form-group">
                         {loop="$fsc->registrov->all_images($fsc->registrov->id_vehiculo)"}
-                        <img src="{$value}" width="300" height="200">                       
+                        <img src="{$value}" width="250" height="200">                       
                         {/loop}
                     </div>
                  </div>
