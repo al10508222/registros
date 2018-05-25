@@ -83,13 +83,13 @@ class admin_agente extends fs_controller
                 
                 $lugar='plugins/registros/infantiles/';
                 //Fin de definir nombres
-                $ruta = "'".$lugar.$this->agente->codagente."'"; 
+                $ruta = "'".$lugar.$this->agente->codagente.".jpg'"; 
                 
                 if(!empty($nombre) && isset($nombre)){
                     if($error==0){
                         if(strpos($tipo,'gif') || strpos($tipo,'jpg') || strpos($tipo,'jpeg') || strpos($tipo,'bmp') || strpos($tipo,'png')){
                             if($size<819200){
-                                if(move_uploaded_file($_FILES['nombre_image']['tmp_name'],$lugar.$this->agente->codagente)){
+                                if(move_uploaded_file($_FILES['nombre_image']['tmp_name'],$lugar.$this->agente->codagente.'.jpg')){
                                     
                                     //comprobar si ya existe imagen para el e mpleado
                                     

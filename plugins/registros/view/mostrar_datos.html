@@ -1,112 +1,164 @@
 {include="header2"}
 {if="$fsc->registrov"}
-<div class="container">
-<div class="col-sm-3 col-xs-3">
+
+<div class="col-sm-14">
+    <div class="container">
         
-    <br>
-    <br>
-    <br>
-
-    <br>
-    <br>
-    <br>
-
-    <form class="form" action="{$fsc->url()}" method="post" enctype="multipart/form-data">         
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-2">
-                     <table>
-                         <thead>
-                             <tr>
-                                 <th>Foto del Vehículo</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <tr>
-                                 <td class="text-center">{$fsc->image_user()}</td>
-                             </tr>
-                         </tbody>
-                     </table>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group">
-                       
-                    </div>
-                 </div>
-
-                <br>    
-                <br>      
-                <br>      
-                <br>      
-                <br>      
-                <br>      
-                <br>      
-                
-                <div class="col-md-6"> 
-                    <h1>Datos del vehiculo</h1>
-                    <table class="table table-striped" border="1">
-                        <tr>
-                            <th>ID Vehículo: </th>
-                            <td>{$fsc->registrov->id_vehiculo}</td>
-                        </tr>
-                        <tr>
-                            <th>Marca: </th>
-                            <td>{$fsc->registrov->marca}</td>
-                        </tr>
-                        <tr>
-                            <th>Modelo: </th>
-                            <td>{$fsc->registrov->modelo}</td>
-                        </tr>
-                        <tr>
-                            <th>Año: </th>
-                            <td>{$fsc->registrov->anio}</td>
-                        </tr>
-                        <tr>
-                            <th>Color: </th>
-                            <td>{$fsc->registrov->color}</td>
-                        </tr>
-                        <tr>
-                            <th>Placas: </th>
-                            <td>{$fsc->registrov->placas}</td>
-                        </tr>
-                    </table>
-                </div> 
-                <div class="col-md-6"> 
-                     <h1>Datos del Personal</h1>
-                    <table class="table table-striped" border="1">
-                        <tr>
-                            <th>Nombre: </th>
-                            <td>{$fsc->registrov->nombre}</td>
-                        </tr>
-                        <tr>
-                            <th>Apellidos </th>
-                            <td>{$fsc->registrov->apellidos}</td>
-                        </tr>
-                        <tr>
-                            <th>Matricula: </th>
-                            <td>{$fsc->registrov->dnicif}</td>
-                        </tr>
-                        <tr>
-                            <th>Empresa/Dependencia: </th>
-                            <td>{$fsc->registrov->dependencia}</td>
-                        </tr>
-                        <tr>
-                            <th>Lugar: </th>
-                            <td>{$fsc->registrov->lugar}</td>
-                        </tr>
-                        <tr>
-                            <th>Telefóno: </th>
-                            <td>{$fsc->registrov->telefono}</td>
-                        </tr>
-                        <tr>
-                            <th>Movil: </th>
-                            <td>{$fsc->registrov->movil}</td>
-                        </tr>
-                    </table>
-                </div> 
+            <h1 align="center">Datos Generales Del Visitante</h1>
+            <br>
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Nombre: </th>
+                    </thead>
+                    <tbody>
+                        <td class=""><img src="{$fsc->registrov->imagen_agente}" alt="200" width="300" height="400"></td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Nombre: </th>
+                    </thead>
+                    <tbody>
+                        <td class="">{$fsc->registrov->nombre} {$fsc->registrov->apellidos}</td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">ID Vehículo: </th>
+                    </thead>
+                    <tbody>
+                        <td class="">{$fsc->registrov->id_vehiculo}.</td>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </form>
-</div>
-{/if}
-{include="footer"}
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Matricula: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->dnicif}.</td>
+                    </tbody>
+                </table>
+            </div>            
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Marca: </th>
+                    </thead>
+                    <tbody>
+                        <td class="">{$fsc->registrov->marca}.</td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Modelo: </th>
+                    </thead>
+                    <tbody>
+                        <td class="">{$fsc->registrov->modelo}.</td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Año: </th>
+                    </thead>
+                    <tbody>
+                        <td class="">{$fsc->registrov->anio}.</td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Color: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->color}.</td>
+                    </tbody>
+                </table>
+            </div>  
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Empresa/Dependencia: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->dependencia}.</td>
+                    </tbody>
+                </table>
+            </div>               
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Telefóno: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->telefono}.</td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Extensión: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->extension}.</td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Celular: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->movil}.</td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Grado: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->grado}.</td>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Especialidad: </th>
+                    </thead>
+                    <tbody>
+                        <td>{$fsc->registrov->especialidad}.</td>
+                    </tbody>
+                </table>
+            </div> 
+            {loop="$fsc->registrov->all_images($fsc->registrov->id_vehiculo)"}
+            <div class="col-sm-3" align="center"> 
+                <table class="table" border="2">
+                    <thead style="background-color: black">
+                        <th style="color: blanchedalmond">Foto: </th>
+                    </thead>
+                    <tbody>
+                        <td>
+                        <img src="{$value}" width="250" height="200">                       
+                    </td>
+                    </tbody>
+                </table>
+            </div> 
+            {/loop}
+    </div>
+    {/if}

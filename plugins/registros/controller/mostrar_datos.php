@@ -44,29 +44,4 @@ class mostrar_datos extends fs_controller{
          return TRUE;
       }
    }
-   
-
-
-   public function image_user()
-    {
-        $data = $this->db->select("SELECT 
-                                        rv.marca,
-                                        rv.modelo,
-                                        rv.anio,
-                                        rv.color,
-                                        rv.placas,
-                                        rv.id_vehiculo,
-                                        rv.codagente,
-                                        rv.foto,
-                                        a.nombre
-                                    FROM registrov rv 
-                                    LEFT JOIN agentes a USING(codagente)
-                                    WHERE rv.id = '".$_GET['id']."';");
-        if ($data) {
-            foreach ($data as $u) {
-                echo '<a href="'.$this->url().'">'.'<img src="data:image/jpg;base64,' .  base64_encode($u['foto'])  . '" height="100" width="100" align="center"/>'; 
-            }
-        }
-    }
-
 }

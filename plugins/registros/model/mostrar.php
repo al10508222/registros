@@ -19,6 +19,10 @@ class mostrar extends fs_model {
     public $telefono; 
     public $movil; 
     public $imagen_auto; 
+    public $grado;
+    public $especialidad;
+    public $extension; 
+    public $imagen_agente; 
     
 
     
@@ -41,7 +45,13 @@ class mostrar extends fs_model {
             $this->lugar = $r['ubicacion'];
             $this->telefono = $r['telefono']; 
             $this->movil = $r['tel_movil']; 
-            $this->imagen_auto = $r['imagen_auto']; 
+            $this->imagen_auto = $r['imagen']; 
+            $this->grado = $r['grado']; 
+            $this->especialidad = $r['especialidad']; 
+            $this->extension = $r['extension']; 
+            $this->imagen_agente = $r['imagen_agente']; 
+            
+            
 
 
         } else {
@@ -62,6 +72,11 @@ class mostrar extends fs_model {
             $this->telefono = NULL;
             $this->movil = NULL; 
             $this->imagen_auto = NULL; 
+            $this->grado = NULL; 
+            $this->especialidad = NULL; 
+            $this->extension = NULL; 
+            $this->imagen_agente = NULL; 
+            
 
 
         }
@@ -123,10 +138,16 @@ class mostrar extends fs_model {
                         a.ubicacion,
                         a.telefono,
                         a.tel_movil,
-                        iv.imagen
+                        iv.imagen,
+                        a.grado,
+                        a.especialidad,
+                        a.extension,
+                        ia.imagen as imagen_agente
                     FROM registrov rv 
                     LEFT JOIN agentes a USING(codagente)
-                    LEFT JOIN image_vehiculo iv USING(id_vehiculo)
+                    INNER JOIN image_vehiculo iv ON(iv.id_vehiculo = rv.id_vehiculo)
+                    INNER JOIN image_agente ia ON(ia.codagente = rv.codagente)
+                    
                     WHERE rv.id = " . $this->var2str($id) . ";");
         if ($r) {
             return new mostrar($r[0]);
@@ -151,6 +172,16 @@ class mostrar extends fs_model {
         $this->cache->delete('m_registrov_all');
     }
 
-
+    public function all_images($id) {
+        $listaregistrov = $this->cache->get_array('m_image_vehiculo_all');
+        if (!$listaregistrov) {
+            $registrov = $this->db->select("SELECT * FROM image_vehiculo WHERE id_vehiculo = '".$id."' ORDER BY id DESC;");
+            if ($registrov) {
+                foreach ($registrov as $r)
+                    $listaregistrov[] = $r['imagen'];
+            }
+        }
+        return $listaregistrov;
+    }
 
 }
