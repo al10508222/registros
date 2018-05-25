@@ -53,6 +53,10 @@ class admin_agente extends fs_controller
         $this->agente->situacion = $_POST['situacion'];
         $this->agente->movil = $_POST['movil'];
         $this->agente->tag = $_POST['tag'];
+        $this->agente->grado = $_POST['grado'];
+        $this->agente->especialidad = $_POST['especialidad'];
+        $this->agente->extension = $_POST['extension'];
+        
         
         
         $this->agente->f_alta = NULL;
@@ -107,7 +111,7 @@ class admin_agente extends fs_controller
                         $this->new_error_msg('Formato incorrecto.');
                     }
                 }else{
-                    $this->new_error_msg('Error al subir la foto.');
+                    $this->new_error_msg('No se selecciono una foto para el empleado.');
                 }
             }else{
                 $this->new_error_msg('La imagen no se subio bien.');

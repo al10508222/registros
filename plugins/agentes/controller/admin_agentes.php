@@ -16,6 +16,10 @@ class admin_agentes extends fs_controller
     public $dependencia; 
     public $situacion;
     public $movil; 
+    public $grado; 
+    public $especialidad; 
+    public $extension; 
+    
 
     public function __construct()
     {
@@ -72,6 +76,10 @@ class admin_agentes extends fs_controller
         $age0->situacion = $_POST['ssituacion'];
         $age0->movil = $_POST['smovil'];
         $age0->tag = $_POST['stag'];
+        $age0->grado = $_POST['sgrado'];
+        $age0->especialidad = $_POST['sespecialidad'];
+        $age0->extension = $_POST['sextension'];
+        
 
 
         if ($age0->save()) {
