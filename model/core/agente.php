@@ -18,6 +18,9 @@ class agente extends \fs_model
     public $tag; 
     public $situacion; 
     public $movil; 
+    public $grado; 
+    public $especialidad; 
+    public $extension; 
 
  
 
@@ -36,8 +39,9 @@ class agente extends \fs_model
             $this->tag = $data['tag'];
             $this->situacion = $data['situacion'];
             $this->movil = $data['tel_movil'];
-
-
+            $this->grado = $data['grado'];
+            $this->especialidad = $data['especialidad'];
+            $this->extension = $data['extension'];
 
 
             $this->f_alta = NULL;
@@ -65,9 +69,9 @@ class agente extends \fs_model
             $this->tag = NULL;
             $this->situacion = NULL;
             $this->movil = NULL;
-
-
-
+            $this->grado = NULL;
+            $this->especialidad = NULL;
+            $this->extension = NULL;
         }
     }
 
@@ -185,6 +189,10 @@ class agente extends \fs_model
                     ", situacion = " . $this->var2str($this->situacion) .
                     ", tel_movil = " . $this->var2str($this->movil) .
                     ", tag = " . $this->var2str($this->tag) .
+                    ", grado = " . $this->var2str($this->grado) .
+                    ", especialidad = " . $this->var2str($this->especialidad) .
+                    ", extension = " . $this->var2str($this->extension) .
+                    
 
                     "  WHERE codagente = " . $this->var2str($this->codagente) . ";";
             } else {
@@ -193,7 +201,7 @@ class agente extends \fs_model
                 }
 
                 $sql = "INSERT INTO " . $this->table_name . " (codagente,nombre,apellidos,dnicif,telefono,
-               email,f_alta,f_baja,dependencia,ubicacion,situacion,tel_movil,tag) VALUES (" . $this->var2str($this->codagente) .
+               email,f_alta,f_baja,dependencia,ubicacion,situacion,tel_movil,tag,grado,especialidad,extension) VALUES (" . $this->var2str($this->codagente) .
                     "," . $this->var2str($this->nombre) .
                     "," . $this->var2str($this->apellidos) .
                     "," . $this->var2str($this->dnicif) .
@@ -206,6 +214,9 @@ class agente extends \fs_model
                     "," . $this->var2str($this->situacion) .
                     "," . $this->var2str($this->movil) .
                     "," . $this->var2str($this->tag) .
+                    "," . $this->var2str($this->grado) .
+                    "," . $this->var2str($this->especialidad) .
+                    "," . $this->var2str($this->extension) .
                      ");";
             }
 

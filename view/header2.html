@@ -22,57 +22,33 @@
    <script type="text/javascript" src="{#FS_PATH#}view/js/jquery-ui.min.js"></script>
    <script type="text/javascript" src="{#FS_PATH#}view/js/bootbox.min.js"></script>
    <script type="text/javascript" src="{$fsc->get_js_location('base.js')}"></script>
-   <script type="text/javascript">
-      bootbox.setLocale("es");
-      
-      function show_precio(precio, coddivisa)
-      {
-         coddivisa || ( coddivisa = '{$fsc->empresa->coddivisa}' );
-         
-         if(coddivisa == '{$fsc->empresa->coddivisa}')
-         {
-            {if="FS_POS_DIVISA=='right'"}
-            return number_format(precio, {#FS_NF0#}, '{#FS_NF1#}', '{#FS_NF2#}')+' {$fsc->simbolo_divisa()}';
-            {else}
-            return '{$fsc->simbolo_divisa()}'+number_format(precio, {#FS_NF0#}, '{#FS_NF1#}', '{#FS_NF2#}');
-            {/if}
-         }
-         else
-         {
-            return number_format(precio, {#FS_NF0#}, '{#FS_NF1#}', '{#FS_NF2#}');
-         }
-      }
-      function show_numero(numero)
-      {
-         return number_format(numero, {#FS_NF0#}, '{#FS_NF1#}', '{#FS_NF2#}');
-      }
-   </script>
-   {loop="$fsc->extensions"}
-      {if="$value->type=='head'"}{$value->text}{/if}
-   {/loop}
+
 </head>
 <body>
-   {if="$fsc->get_errors()"}
-   <div class="alert alert-danger alert-dismissible hidden-print" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-      </button>
-      <ul>{loop="$fsc->get_errors()"}<li>{$value}</li>{/loop}</ul>
-   </div>
+    Aqui va el logo
+   <!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#fs-navbar-collapse-1">
+               <span class="sr-only">Menú</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+         </div>
+      </div>
+   </nav> -->
+   
+   {if="$fsc->user->css=='view/css/bootstrap-yeti.min.css'"}
+   <div style="margin-bottom: 55px"></div>
+   {else}
+   <div style="margin-bottom: 70px"></div>
    {/if}
-   {if="$fsc->get_messages()"}
-   <div class="alert alert-success alert-dismissible hidden-print" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-      </button>
-      <ul>{loop="$fsc->get_messages()"}<li>{$value}</li>{/loop}</ul>
-   </div>
-   {/if}
-   {if="$fsc->get_advices()"}
-   <div class="alert alert-info alert-dismissible hidden-print" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-      </button>
-      <ul>{loop="$fsc->get_advices()"}<li>{$value}</li>{/loop}</ul>
-   </div>
-   {/if}
+   
+   
+   
+  
+   
+   
