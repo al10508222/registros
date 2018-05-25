@@ -27,34 +27,16 @@
             </div>
         </div>
     <br>
-    <br>
-    <br>
 
         
         <div align="center">
             <h1>Editar Información del Vehículo</h1>
         </div>
     <br>
-    <br>
-    <br>
 
     <form class="form" action="{$fsc->url()}" method="post" enctype="multipart/form-data">         
         <div class="container">
             <div class="row">
-                <div class="col-sm-2">
-                     <table>
-                         <thead>
-                             <tr>
-                                 <th>Foto del Vehículo</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <tr>
-                                 <td class="text-center">{$fsc->image_user()}</td>
-                             </tr>
-                         </tbody>
-                     </table>
-                </div>
                 <div class="col-sm-2">
                     <div class="form-group">
                        
@@ -62,19 +44,21 @@
                  </div>
 
                  <div class="form-group">
-               Cambiar foto del vehículo: 
+               Agregar imagen del vehículo: 
                <br>
                <br>
                   <input type="file" name="nombre_image" id="nombre_image" title="Seleccione la imagen en formato JPEG" multiple>
                </div> 
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {loop="$fsc->registrov->all_images($fsc->registrov->id_vehiculo)"}
+                        <img src="{$value}" width="300" height="200">                       
+                        {/loop}
+                    </div>
+                 </div>
                 <br>    
                 <br>      
-                <br>      
-                <br>      
-                <br>      
-                <br>      
-                <br>      
-
                 <div class="col-md-2"> 
                     <div class="form-group">
                         Consecutivo: 
@@ -139,6 +123,7 @@
                        </select>
                     </div>
                  </div>
+
 
                 <div class="text-right">
                     <button type="submit" class="btn btn-sm btn-primary" name="subir" id="subir">

@@ -18,6 +18,7 @@ class mostrar extends fs_model {
     public $lugar;
     public $telefono; 
     public $movil; 
+    public $imagen_auto; 
     
 
     
@@ -40,6 +41,8 @@ class mostrar extends fs_model {
             $this->lugar = $r['ubicacion'];
             $this->telefono = $r['telefono']; 
             $this->movil = $r['tel_movil']; 
+            $this->imagen_auto = $r['imagen_auto']; 
+
 
         } else {
             // $this->id = NULL; 
@@ -58,6 +61,8 @@ class mostrar extends fs_model {
             $this->lugar = NULL;
             $this->telefono = NULL;
             $this->movil = NULL; 
+            $this->imagen_auto = NULL; 
+
 
         }
     }
@@ -117,9 +122,11 @@ class mostrar extends fs_model {
                         a.dependencia,
                         a.ubicacion,
                         a.telefono,
-                        a.tel_movil
+                        a.tel_movil,
+                        iv.imagen
                     FROM registrov rv 
                     LEFT JOIN agentes a USING(codagente)
+                    LEFT JOIN image_vehiculo iv USING(id_vehiculo)
                     WHERE rv.id = " . $this->var2str($id) . ";");
         if ($r) {
             return new mostrar($r[0]);
@@ -144,9 +151,6 @@ class mostrar extends fs_model {
         $this->cache->delete('m_registrov_all');
     }
 
-    public function all() {
-    
-    }
-    
+
 
 }
