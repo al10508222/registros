@@ -148,7 +148,7 @@ class mostrar extends fs_model {
                     INNER JOIN image_vehiculo iv ON(iv.id_vehiculo = rv.id_vehiculo)
                     INNER JOIN image_agente ia ON(ia.codagente = rv.codagente)
                     
-                    WHERE rv.id = " . $this->var2str($id) . ";");
+                    WHERE a.codagente = " . $this->var2str($id) . ";");
         if ($r) {
             return new mostrar($r[0]);
         } else
