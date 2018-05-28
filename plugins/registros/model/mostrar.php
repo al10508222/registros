@@ -23,6 +23,7 @@ class mostrar extends fs_model {
     public $especialidad;
     public $extension; 
     public $imagen_agente; 
+    public $tag; 
     
 
     
@@ -50,6 +51,8 @@ class mostrar extends fs_model {
             $this->especialidad = $r['especialidad']; 
             $this->extension = $r['extension']; 
             $this->imagen_agente = $r['imagen_agente']; 
+            $this->tag = $r['tag']; 
+            
             
             
 
@@ -76,6 +79,7 @@ class mostrar extends fs_model {
             $this->especialidad = NULL; 
             $this->extension = NULL; 
             $this->imagen_agente = NULL; 
+            $this->tag =NULL; 
             
 
 
@@ -142,13 +146,14 @@ class mostrar extends fs_model {
                         a.grado,
                         a.especialidad,
                         a.extension,
+                        a.tag,
                         ia.imagen as imagen_agente
                     FROM registrov rv 
                     LEFT JOIN agentes a USING(codagente)
                     INNER JOIN image_vehiculo iv ON(iv.id_vehiculo = rv.id_vehiculo)
                     INNER JOIN image_agente ia ON(ia.codagente = rv.codagente)
                     
-                    WHERE a.codagente = " . $this->var2str($id) . ";");
+                    WHERE rv.id = " . $this->var2str($id) . ";");
         if ($r) {
             return new mostrar($r[0]);
         } else

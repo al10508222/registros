@@ -56,11 +56,7 @@
                   <span class="glyphicon glyphicon-dashboard"></span> &nbsp; Datos generales
                </a>
                 <div align="center">
-                  
-
                   <img src="plugins/registros/infantiles/{$fsc->agente->codagente}.jpg" width="200" height="240">
-
-                
                 </div>
             </li>
             {loop="$fsc->extensions"}
@@ -161,19 +157,19 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                Grado:
-                               <input class="form-control" type="text" name="grado" value="{$fsc->agente->grado}" maxlength="10" autocomplete="off"/>
+                               <input class="form-control" type="text" name="grado" value="{$fsc->agente->grado}" maxlength="100" autocomplete="off"/>
                             </div>
                          </div>
                          <div class="col-sm-4">
                             <div class="form-group">
                                Especialidad:
-                               <input class="form-control" type="text" name="especialidad" value="{$fsc->agente->especialidad}" maxlength="10" autocomplete="off"/>
+                               <input class="form-control" type="text" name="especialidad" value="{$fsc->agente->especialidad}" maxlength="100" autocomplete="off"/>
                             </div>
                          </div>
                          <div class="col-sm-4">
                             <div class="form-group">
                                Extensión:
-                               <input class="form-control" type="text" name="extension" value="{$fsc->agente->extension}" maxlength="10" autocomplete="off"/>
+                               <input class="form-control" type="text" name="extension" value="{$fsc->agente->extension}" maxlength="5" autocomplete="off"/>
                             </div>
                          </div>
 
