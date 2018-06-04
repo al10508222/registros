@@ -95,8 +95,7 @@ class admin_agentes extends fs_controller
         if ($age0) {
             if (FS_DEMO) {
                 $this->new_error_msg('En el modo <b>demo</b> no se pueden eliminar empleados. Otro usuario podría estar usándolo.');
-            } else if (!$this->allow_delete) {
-                $this->new_error_msg('No tienes permiso para eliminar en esta página.');
+            
             } else if ($age0->delete()) {
                 $this->new_message("Empleado " . $age0->codagente . " eliminado correctamente.");
             } else
