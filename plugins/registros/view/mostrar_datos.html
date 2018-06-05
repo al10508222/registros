@@ -50,13 +50,6 @@
         <div class="col-sm-5" align="center"> 
             <table class="table">
                 <tbody>
-                    <th style="color: white"><b>Unidad: {$fsc->registrov->dependencia}</b></th>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-5" align="center"> 
-            <table class="table">
-                <tbody>
                     <th style="color: white"><b>Telefóno: {$fsc->registrov->telefono}</b></th>
                     <th style="color: white"><b>Ext. {$fsc->registrov->extension}</b></th>
                 </tbody>
@@ -69,29 +62,39 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-4" align="center"> 
+        <div class="col-sm-5" align="center"> 
             <table class="table">
                 <tbody>
                     <th style="color: white"><b>Lugar: {$fsc->registrov->lugar}</b></th>
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-3" align="center"> 
+        <div class="col-sm-2" align="center"> 
+            <table class="table">
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-5" align="center"> 
             <table class="table">
                 <tbody>
                     <th style="color: white"><b>Movil: {$fsc->registrov->movil}</b></th>
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-3" align="center"> 
-                <table class="table">
-                    <tbody>
-                        <th style="color: white"><b>TAG: {$fsc->registrov->tag}</b></th>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-sm-5" align="center"> 
+            <table class="table">
+                <tbody>
+                    <th style="color: white"><b>TAG: {$fsc->registrov->tag}</b></th>
+                </tbody>
+            </table>
+        </div>
 
         <div class="col-sm-12" align="center"> 
+            <br>
+            <br>
+            <br>
             <table class="table">
                 <tbody>
                     {loop="$fsc->registrov->all_images($fsc->registrov->id_vehiculo)"}
