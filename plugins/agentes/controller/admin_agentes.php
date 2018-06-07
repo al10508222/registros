@@ -23,7 +23,7 @@ class admin_agentes extends fs_controller
 
     public function __construct()
     {
-        parent::__construct(__CLASS__, 'Mostrar', 'Agentes');
+        parent::__construct(__CLASS__, 'Mostrar', 'Personal');
     }
 
     protected function private_core()
